@@ -1,0 +1,1 @@
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bebaa30be5b40479d8e4/test_coverage)](https://codeclimate.com/github/beattim26/frontend-project-lvl1/test_coverage)
