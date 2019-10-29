@@ -13,6 +13,10 @@ console.log('');
 const makeIntegerNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const isEvenQuestion = (answerCount) => {
+  if (answerCount === 3) {
+    return console.log(`Congratulations, ${userName}!`);
+  }
+
   const minNumber = 1;
   const maxNumber = 100;
   const randomNumber = makeIntegerNumber(minNumber, maxNumber);
@@ -24,13 +28,10 @@ const isEvenQuestion = (answerCount) => {
 
   if (userAnswer.toLowerCase() === correctAnswer) {
     console.log('Correct!');
-    if (answerCount === 3) {
-      return console.log(`Congratulations, ${userName}!`);
-    }
     return isEvenQuestion(answerCount + 1);
   }
   console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
-  return isEvenQuestion(1);
+  return isEvenQuestion(0);
 };
 
-isEvenQuestion(1);
+isEvenQuestion(0);
