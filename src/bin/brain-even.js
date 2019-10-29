@@ -25,14 +25,12 @@ const isEvenQuestion = (answerCount) => {
   if (userAnswer.toLowerCase() === correctAnswer) {
     console.log('Correct!');
     if (answerCount === 3) {
-      console.log(`Congratulations, ${userName}!`);
-    } else {
-      isEvenQuestion(answerCount + 1);
+      return console.log(`Congratulations, ${userName}!`);
     }
-  } else {
-    console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
-    isEvenQuestion(1);
+    return isEvenQuestion(answerCount + 1);
   }
+  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
+  return isEvenQuestion(1);
 };
 
 isEvenQuestion(1);

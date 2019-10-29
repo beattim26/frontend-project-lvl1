@@ -10,8 +10,14 @@
 $ make install
 ```
 
-## Start
+## Start Brain-Game
 
 ```sh
 $ make start
+```
+
+## Start Even-Game
+
+```sh
+$ make even
 ```
