@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+import readlineSync from 'readline-sync';
+
+console.log('Welcome to the Brain Games!');
+console.log('Answer "yes" if the number is even, otherwise answer "no"');
+console.log('');
+
+const userName = readlineSync.question('May I have your name? ');
+console.log(`Hello, ${userName}!`);
+console.log('');
+
+const makeIntegerNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+const isEvenQuestion = (answerCount) => {
+  const minNumber = 1;
+  const maxNumber = 100;
+  const randomNumber = makeIntegerNumber(minNumber, maxNumber);
+
+  console.log(`Question: ${randomNumber}`);
+
+  const userAnswer = readlineSync.question('Your answer: ');
+  const correctAnswer = randomNumber % 2 === 0 ? 'yes' : 'no';
+
+  if (userAnswer.toLowerCase() === correctAnswer) {
+    console.log('Correct!');
+    if (answerCount === 3) {
+      console.log(`Congratulations, ${userName}!`);
+    } else {
+      isEvenQuestion(answerCount + 1);
+    }
+  } else {
+    console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
+    isEvenQuestion(1);
+  }
+};
+
+isEvenQuestion(1);
