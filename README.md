@@ -21,3 +21,9 @@ $ make start
 ```sh
 $ make even
 ```
+
+## Start Calc-Game
+
+```sh
+$ make even
+```

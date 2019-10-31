@@ -4,15 +4,23 @@ import readlineSync from 'readline-sync';
 
 const makeIntegerNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-const makeRandomExpression = () => {
-  const randomNum = makeIntegerNumber(1, 4);
-  if (randomNum === 1) {
-    return '+';
+const makeRandomExpression = (a, b, num, type) => {
+  if (num === 1 && type === 'string') {
+    return `${a} + ${b}`;
   }
-  if (randomNum === 2) {
-    return '-';
+  if (num === 1 && type === 'number') {
+    return a + b;
   }
-  return '*';
+  if (num === 2 && type === 'string') {
+    return `${a} - ${b}`;
+  }
+  if (num === 2 && type === 'number') {
+    return a - b;
+  }
+  if (num > 2 && type === 'string') {
+    return `${a} * ${b}`;
+  }
+  return a * b;
 };
 
 const askName = () => {
@@ -49,13 +57,21 @@ const askCalcQestion = (answerCount, name) => {
     return console.log(`Congratulations, ${name}!`);
   }
 
-  const minNumber = 1;
-  const maxNumber = 25;
-  const firstRandomNumber = makeIntegerNumber(minNumber, maxNumber);
-  const secondRandomNumber = makeIntegerNumber(minNumber, maxNumber);
-  const randomExpression = makeRandomExpression();
+  const firstRandomNumber = makeIntegerNumber(1, 25);
+  const secondRandomNumber = makeIntegerNumber(1, 25);
+  const thirdRandomNumber = makeIntegerNumber(1, 4);
 
-  console.log(`Question: ${firstRandomNumber} ${randomExpression} ${secondRandomNumber}`);
+  console.log(`Question: ${makeRandomExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber, 'string')}`);
+  const userAnswer = readlineSync.question('Your answer: ');
+  const correctAnswer = `${makeRandomExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber, 'number')}`;
+
+  if (userAnswer.toLowerCase() === correctAnswer) {
+    console.log('Correct!');
+    return askCalcQestion(answerCount + 1, name);
+  }
+  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
+  console.log(`Let's try again, ${name}!`);
+  return askCalcQestion(0, name);
 };
 
 export {

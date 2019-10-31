@@ -8,4 +8,4 @@ console.log('');
 
 const name = askName();
 
-askCalcQestion();
+askCalcQestion(0, name);
