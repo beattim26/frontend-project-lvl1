@@ -4,21 +4,24 @@ import readlineSync from 'readline-sync';
 
 const makeIntegerNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-const makeRandomExpression = (a, b, num, type) => {
-  let result;
-  if (num === 1 && type === 'string') {
-    result = `${a} + ${b}`;
-  } else if (num === 1 && type === 'number') {
-    result = a + b;
-  } else if (num === 2 && type === 'string') {
-    result = `${a} - ${b}`;
-  } else if (num === 2 && type === 'number') {
-    result = a - b;
-  } else if (num > 2 && type === 'string') {
-    result = `${a} * ${b}`;
+const makeRandomExpression = (a, b, num) => {
+  if (num === 1) {
+    return `${a} + ${b}`;
   }
-  result = a * b;
-  return result;
+  if (num === 2) {
+    return `${a} - ${b}`;
+  }
+  return `${a} * ${b}`;
+};
+
+const calcExpression = (a, b, num) => {
+  if (num === 1) {
+    return a + b;
+  }
+  if (num === 2) {
+    return a - b;
+  }
+  return a * b;
 };
 
 const askName = () => {
@@ -30,7 +33,7 @@ const askName = () => {
 
 const askEvenQuestion = (answerCount, name) => {
   if (answerCount === 3) {
-    console.log(`Congratulations, ${name}!`);
+    return console.log(`Congratulations, ${name}!`);
   }
 
   const randomNumber = makeIntegerNumber(1, 100);
@@ -50,16 +53,17 @@ const askEvenQuestion = (answerCount, name) => {
 
 const askCalcQestion = (answerCount, name) => {
   if (answerCount === 3) {
-    console.log(`Congratulations, ${name}!`);
+    return console.log(`Congratulations, ${name}!`);
   }
 
   const firstRandomNumber = makeIntegerNumber(1, 25);
   const secondRandomNumber = makeIntegerNumber(1, 25);
   const thirdRandomNumber = makeIntegerNumber(1, 4);
 
-  console.log(`Question: ${makeRandomExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber, 'string')}`);
+  console.log(`Question: ${makeRandomExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber)}`);
+
   const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = `${makeRandomExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber, 'number')}`;
+  const correctAnswer = `${calcExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber)}`;
 
   if (userAnswer.toLowerCase() === correctAnswer) {
     console.log('Correct!');
