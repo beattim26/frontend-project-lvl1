@@ -8,6 +8,7 @@
 
 ```sh
 $ make install
+$ make publish
 ```
 
 ## Start Brain-Game

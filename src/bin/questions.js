@@ -5,22 +5,20 @@ import readlineSync from 'readline-sync';
 const makeIntegerNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const makeRandomExpression = (a, b, num, type) => {
+  let result;
   if (num === 1 && type === 'string') {
-    return `${a} + ${b}`;
+    result = `${a} + ${b}`;
+  } else if (num === 1 && type === 'number') {
+    result = a + b;
+  } else if (num === 2 && type === 'string') {
+    result = `${a} - ${b}`;
+  } else if (num === 2 && type === 'number') {
+    result = a - b;
+  } else if (num > 2 && type === 'string') {
+    result = `${a} * ${b}`;
   }
-  if (num === 1 && type === 'number') {
-    return a + b;
-  }
-  if (num === 2 && type === 'string') {
-    return `${a} - ${b}`;
-  }
-  if (num === 2 && type === 'number') {
-    return a - b;
-  }
-  if (num > 2 && type === 'string') {
-    return `${a} * ${b}`;
-  }
-  return a * b;
+  result = a * b;
+  return result;
 };
 
 const askName = () => {
@@ -32,12 +30,10 @@ const askName = () => {
 
 const askEvenQuestion = (answerCount, name) => {
   if (answerCount === 3) {
-    return console.log(`Congratulations, ${name}!`);
+    console.log(`Congratulations, ${name}!`);
   }
 
-  const minNumber = 1;
-  const maxNumber = 100;
-  const randomNumber = makeIntegerNumber(minNumber, maxNumber);
+  const randomNumber = makeIntegerNumber(1, 100);
 
   console.log(`Question: ${randomNumber}`);
 
@@ -54,7 +50,7 @@ const askEvenQuestion = (answerCount, name) => {
 
 const askCalcQestion = (answerCount, name) => {
   if (answerCount === 3) {
-    return console.log(`Congratulations, ${name}!`);
+    console.log(`Congratulations, ${name}!`);
   }
 
   const firstRandomNumber = makeIntegerNumber(1, 25);
