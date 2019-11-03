@@ -1,35 +1,13 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-
-const makeIntegerNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-
-const makeRandomExpression = (a, b, num) => {
-  if (num === 1) {
-    return `${a} + ${b}`;
-  }
-  if (num === 2) {
-    return `${a} - ${b}`;
-  }
-  return `${a} * ${b}`;
-};
-
-const calcExpression = (a, b, num) => {
-  if (num === 1) {
-    return a + b;
-  }
-  if (num === 2) {
-    return a - b;
-  }
-  return a * b;
-};
-
-const calcNod = (a, b) => {
-  if (b === 0) {
-    return a;
-  }
-  return calcNod(b, a % b);
-};
+import {
+  makeIntegerNumber,
+  makeRandomExpression,
+  calcExpression,
+  calcNod,
+  makeProgression,
+} from './computing';
 
 const askName = () => {
   const userName = readlineSync.question('May I have your name? ');
@@ -73,7 +51,7 @@ const askCalcQestion = (answerCount, name) => {
   const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = `${calcExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber)}`;
 
-  if (userAnswer.toLowerCase() === correctAnswer) {
+  if (userAnswer === correctAnswer) {
     console.log('Correct!');
     return askCalcQestion(answerCount + 1, name);
   }
@@ -96,7 +74,7 @@ const askGcdQestion = (answerCount, name) => {
   const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = calcNod(firstRandomNumber, secondRandomNumber);
 
-  if (userAnswer.toLowerCase() === String(correctAnswer)) {
+  if (userAnswer === String(correctAnswer)) {
     console.log('Correct!');
     return askGcdQestion(answerCount + 1, name);
   }
@@ -106,9 +84,35 @@ const askGcdQestion = (answerCount, name) => {
   return askGcdQestion(0, name);
 };
 
+const askProgressionQestion = (answerCount, name) => {
+  if (answerCount === 3) {
+    return console.log(`Congratulations, ${name}!`);
+  }
+
+  const firstRandomNumber = makeIntegerNumber(1, 50);
+  const secondRandomNumber = makeIntegerNumber(1, 25);
+  const hiddenPosition = makeIntegerNumber(2, 9);
+
+  console.log(`Question: ${makeProgression(firstRandomNumber, secondRandomNumber, hiddenPosition, true)}`);
+
+  const userAnswer = readlineSync.question('Your answer: ');
+  const correctAnswer = makeProgression(firstRandomNumber, secondRandomNumber,
+    hiddenPosition, false);
+
+  if (userAnswer === String(correctAnswer)) {
+    console.log('Correct!');
+    return askProgressionQestion(answerCount + 1, name);
+  }
+
+  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
+  console.log(`Let's try again, ${name}!`);
+  return askProgressionQestion(0, name);
+};
+
 export {
   askName,
   askEvenQuestion,
   askCalcQestion,
   askGcdQestion,
+  askProgressionQestion,
 };

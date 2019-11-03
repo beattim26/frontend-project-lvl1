@@ -33,3 +33,9 @@ $ make even
 ```sh
 $ make gcd
 ```
+
+## Start Progression-Game
+
+```sh
+$ make progression
+```
