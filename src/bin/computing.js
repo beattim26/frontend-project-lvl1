@@ -51,13 +51,6 @@ const makeProgression = (a, b, hiddenPosition, result) => {
 
 // check if the number is prime
 const isPrime = (num) => {
-  if (num <= 1) {
-    return false;
-  }
-  if (num === 2) {
-    return true;
-  }
-
   const sqrtNum = Math.sqrt(num);
 
   for (let i = 2; i <= sqrtNum; i += 1) {
