@@ -24,6 +24,13 @@ const calcExpression = (a, b, num) => {
   return a * b;
 };
 
+const calcNod = (a, b) => {
+  if (b === 0) {
+    return a;
+  }
+  return calcNod(b, a % b);
+};
+
 const askName = () => {
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
@@ -47,6 +54,7 @@ const askEvenQuestion = (answerCount, name) => {
     console.log('Correct!');
     return askEvenQuestion(answerCount + 1, name);
   }
+
   console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
   return askEvenQuestion(0, name);
 };
@@ -69,13 +77,38 @@ const askCalcQestion = (answerCount, name) => {
     console.log('Correct!');
     return askCalcQestion(answerCount + 1, name);
   }
+
   console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
   console.log(`Let's try again, ${name}!`);
   return askCalcQestion(0, name);
+};
+
+const askGcdQestion = (answerCount, name) => {
+  if (answerCount === 3) {
+    return console.log(`Congratulations, ${name}!`);
+  }
+
+  const firstRandomNumber = makeIntegerNumber(1, 100);
+  const secondRandomNumber = makeIntegerNumber(1, 100);
+
+  console.log(`Question: ${firstRandomNumber} ${secondRandomNumber}`);
+
+  const userAnswer = readlineSync.question('Your answer: ');
+  const correctAnswer = calcNod(firstRandomNumber, secondRandomNumber);
+
+  if (userAnswer.toLowerCase() === String(correctAnswer)) {
+    console.log('Correct!');
+    return askGcdQestion(answerCount + 1, name);
+  }
+
+  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
+  console.log(`Let's try again, ${name}!`);
+  return askGcdQestion(0, name);
 };
 
 export {
   askName,
   askEvenQuestion,
   askCalcQestion,
+  askGcdQestion,
 };
