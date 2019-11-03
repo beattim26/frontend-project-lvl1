@@ -10,16 +10,18 @@ $ make install
 $ make publish
 ```
 
-## Start Brain-Game
-
-```sh
-$ make start
-```
-
 ## Start Even-Game
 
 ```sh
 $ make even
+Answer "yes" if the number is even, otherwise answer "no"
+
+May I have your name? Sam
+Hello, Sam!
+
+Question: 56
+Your answer: Yes
+Correct!
 ```
 
 ## Start Calc-Game
