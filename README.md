@@ -7,7 +7,6 @@
 
 ```sh
 $ make install
-$ make publish
 ```
 
 ## Start Even-Game
