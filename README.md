@@ -39,3 +39,9 @@ $ make gcd
 ```sh
 $ make progression
 ```
+
+## Start Prime-Game
+
+```sh
+$ make prime
+```
