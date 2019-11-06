@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import readlineSync from 'readline-sync';
+
 // create a random integer number from min to max
 const makeIntegerNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
@@ -61,6 +63,14 @@ const isPrime = (num) => {
   return true;
 };
 
+// Ask name of user
+const askName = () => {
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log('');
+  return userName;
+};
+
 export {
   makeIntegerNumber,
   makeRandomExpression,
@@ -68,4 +78,5 @@ export {
   calcNod,
   makeProgression,
   isPrime,
+  askName,
 };
