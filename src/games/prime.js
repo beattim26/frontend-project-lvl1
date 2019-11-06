@@ -9,7 +9,7 @@ import {
 
 const askPrimeQestion = () => {
   console.log('Welcome to the Brain Games!');
-  console.log('Answer "yes" if the number is even, otherwise answer "no"');
+  console.log('Answer "yes" if given number is prime. Othervwise anser "no".');
   console.log('');
 
   const name = askName();
