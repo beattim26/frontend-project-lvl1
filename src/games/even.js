@@ -10,8 +10,8 @@ import {
 const askEvenQuestion = () => {
   const name = makeGreeting('even');
   const askTask = (answerCount, user) => {
-    // "answerCount" = accumulator. If "answerCount" < 3, function repeat theyself
-    // else, function congats the user
+    // "answerCount" = accumulator."answerCount" < 3, function repeat theyself
+    // function congats the user
     if (answerCount === 3) {
       return console.log(`Congratulations, ${user}!`);
     }
@@ -23,7 +23,7 @@ const askEvenQuestion = () => {
     const userAnswer = readlineSync.question('Your answer: ');
     const correctAnswer = randomNumber % 2 === 0 ? 'yes' : 'no';
 
-    // if user answer === correct answer, call function again
+    // user answer === correct answer, call function again
     if (userAnswer.toLowerCase() === correctAnswer) {
       console.log('Correct!');
       return askTask(answerCount + 1, user);
