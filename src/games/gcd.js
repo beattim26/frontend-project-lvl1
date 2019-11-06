@@ -2,17 +2,13 @@
 
 import readlineSync from 'readline-sync';
 import {
-  askName,
+  makeGreeting,
   makeIntegerNumber,
   calcNod,
 } from '../engine/computing';
 
 const askGcdQestion = () => {
-  console.log('Welcome to the Brain Games!');
-  console.log('Find the gratest common divisor of given numbers.');
-  console.log('');
-
-  const name = askName();
+  const name = makeGreeting('gcd');
   const askTask = (answerCount, user) => {
     // "answerCount" = accumulator. If "answerCount" < 3, function repeat theyself
     // else, function congats the user

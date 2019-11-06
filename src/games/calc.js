@@ -2,18 +2,14 @@
 
 import readlineSync from 'readline-sync';
 import {
-  askName,
+  makeGreeting,
   makeIntegerNumber,
   makeRandomExpression,
   calcExpression,
 } from '../engine/computing';
 
 const askCalcQestion = () => {
-  console.log('Welcome to the Brain Games!');
-  console.log('Answer "yes" if the number is even, otherwise answer "no"');
-  console.log('');
-
-  const name = askName();
+  const name = makeGreeting('calc');
   const askTask = (answerCount, user) => {
     // "answerCount" = accumulator. If "answerCount" < 3, function repeat theyself
     // else, function congats the user

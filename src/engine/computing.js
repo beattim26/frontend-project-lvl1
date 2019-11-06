@@ -64,7 +64,24 @@ const isPrime = (num) => {
 };
 
 // Ask name of user
-const askName = () => {
+const makeGreeting = (type) => {
+  console.log('Welcome to the Brain Games!');
+  if (type === 'even') {
+    console.log('Answer "yes" if the number is even, otherwise answer "no"');
+  }
+  if (type === 'calc') {
+    console.log('What is the result of the expression?');
+  }
+  if (type === 'gcd') {
+    console.log('Find the gratest common divisor of given numbers.');
+  }
+  if (type === 'progression') {
+    console.log('What number is missing in the progression?');
+  }
+  if (type === 'prime') {
+    console.log('Answer "yes" if given number is prime. Othervwise anser "no".');
+  }
+  console.log('');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
   console.log('');
@@ -78,5 +95,5 @@ export {
   calcNod,
   makeProgression,
   isPrime,
-  askName,
+  makeGreeting,
 };

@@ -2,18 +2,13 @@
 
 import readlineSync from 'readline-sync';
 import {
-  askName,
+  makeGreeting,
   makeIntegerNumber,
   makeProgression,
 } from '../engine/computing';
 
 const askProgressionQestion = () => {
-  console.log('Welcome to the Brain Games!');
-  console.log('What number is missing in the progression?');
-  console.log('');
-
-  const name = askName();
-
+  const name = makeGreeting('progression');
   const askTask = (answerCount, user) => {
     // "answerCount" = accumulator. If "answerCount" < 3, function repeat theyself
     // else, function congats the user

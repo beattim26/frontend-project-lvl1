@@ -2,17 +2,13 @@
 
 import readlineSync from 'readline-sync';
 import {
-  askName,
+  makeGreeting,
   makeIntegerNumber,
   isPrime,
 } from '../engine/computing';
 
 const askPrimeQestion = () => {
-  console.log('Welcome to the Brain Games!');
-  console.log('Answer "yes" if given number is prime. Othervwise anser "no".');
-  console.log('');
-
-  const name = askName();
+  const name = makeGreeting('prime');
   const askTask = (answerCount, user) => {
     // "answerCount" = accumulator. If "answerCount" < 3, function repeat theyself
     // else, function congats the user
