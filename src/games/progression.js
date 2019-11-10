@@ -4,16 +4,26 @@ import readlineSync from 'readline-sync';
 import {
   makeGreeting,
   makeIntegerNumber,
-  makeProgression,
+  checkUserAnswer,
 } from '../engine/computing';
 
-const askProgression = (answerCount, user) => {
-  // "answerCount" = accumulator. If "answerCount" < 3, function repeat theyself
-  // else, function congats the user
-  if (answerCount === 3) {
-    return console.log(`Congratulations, ${user}!`);
+// create progression and return string of progression or hidden number in progression string
+const makeProgression = (a, b, hiddenPosition, result) => {
+  const progressionLength = 10;
+  const progressionArr = [a];
+
+  for (let i = 1; i < progressionLength; i += 1) {
+    progressionArr.push(progressionArr[i - 1] + b);
   }
 
+  if (result) {
+    progressionArr[hiddenPosition] = '..';
+    return String(progressionArr.join(' '));
+  }
+  return String(progressionArr[hiddenPosition]);
+};
+
+const askProgressionQuestion = (answerCount, user) => {
   // create 3 random number for function makeProgression
   const firstRandomNumber = makeIntegerNumber(1, 50);
   const secondRandomNumber = makeIntegerNumber(1, 25);
@@ -22,24 +32,15 @@ const askProgression = (answerCount, user) => {
   console.log(`Question: ${makeProgression(firstRandomNumber, secondRandomNumber, hiddenPosition, true)}`);
 
   const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = makeProgression(firstRandomNumber, secondRandomNumber,
-    hiddenPosition, false);
+  const correctAnswer = String(makeProgression(firstRandomNumber, secondRandomNumber,
+    hiddenPosition, false));
 
-  // if user answer === correct answer, call function again
-  if (userAnswer === String(correctAnswer)) {
-    console.log('Correct!');
-    return askProgression(answerCount + 1, user);
-  }
-
-  // else, we inform the user that incorrect answer and call function with 0 accum
-  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
-  console.log(`Let's try again, ${user}!`);
-  return askProgression(0, user);
+  checkUserAnswer(userAnswer, correctAnswer, askProgressionQuestion, answerCount, user);
 };
 
-const askProgressionQestion = () => {
-  const name = makeGreeting('progression');
-  askProgression(0, name);
+const startProgressionGame = () => {
+  const name = makeGreeting('What number is missing in the progression?');
+  askProgressionQuestion(1, name);
 };
 
-export default askProgressionQestion;
+export default startProgressionGame;

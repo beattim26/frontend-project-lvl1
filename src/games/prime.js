@@ -4,16 +4,22 @@ import readlineSync from 'readline-sync';
 import {
   makeGreeting,
   makeIntegerNumber,
-  isPrime,
+  checkUserAnswer,
 } from '../engine/computing';
 
-const askPrime = (answerCount, user) => {
-  // "answerCount" = accumulator. "answerCount" < 3, function repeat theyself
-  // function congats the user
-  if (answerCount === 3) {
-    return console.log(`Congratulations, ${user}!`);
-  }
+// check if the number is prime
+const isPrime = (num) => {
+  const sqrtNum = Math.sqrt(num);
 
+  for (let i = 2; i <= sqrtNum; i += 1) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+};
+
+const askPrimeQuestion = (answerCount, user) => {
   // create a random number for function isPrime
   const randomNumber = makeIntegerNumber(2, 3571);
 
@@ -22,21 +28,12 @@ const askPrime = (answerCount, user) => {
   const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = isPrime(randomNumber) ? 'yes' : 'no';
 
-  // user answer === correct answer, call function again
-  if (userAnswer.toLowerCase() === correctAnswer) {
-    console.log('Correct!');
-    return askPrime(answerCount + 1, user);
-  }
-
-  // we inform the user that incorrect answer and call function with 0 accum
-  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
-  console.log(`Let's try again, ${user}!`);
-  return askPrime(0, user);
+  checkUserAnswer(userAnswer, correctAnswer, askPrimeQuestion, answerCount, user);
 };
 
-const askPrimeQestion = () => {
-  const name = makeGreeting('prime');
-  askPrime(0, name);
+const startPrimeGame = () => {
+  const name = makeGreeting('Answer "yes" if given number is prime. Othervwise anser "no".');
+  askPrimeQuestion(1, name);
 };
 
-export default askPrimeQestion;
+export default startPrimeGame;
