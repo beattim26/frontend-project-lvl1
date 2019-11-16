@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import readlineSync from 'readline-sync';
+
 // create a random integer number from min to max
 const makeIntegerNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
@@ -26,9 +28,18 @@ const makeGreeting = (message) => {
   console.log('');
 };
 
+const askUserName = () => {
+  const userName = readlineSync.question('May I have your name?');
+  console.log(`Hello, ${userName}!`);
+  console.log('');
+
+  return userName;
+};
+
 export {
   makeIntegerNumber,
   checkUserAnswer,
   askAnyQuestion,
   makeGreeting,
+  askUserName,
 };

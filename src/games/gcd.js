@@ -6,6 +6,7 @@ import {
   checkUserAnswer,
   askAnyQuestion,
   makeGreeting,
+  askUserName,
 } from '../engine/computing';
 
 // find the greatest divider for two number
@@ -32,9 +33,7 @@ const askGcdQestion = (answerCount, user) => {
 
 const startGcdGame = () => {
   makeGreeting('Find the gratest common divisor of given numbers.');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log('');
+  const userName = askUserName();
   askGcdQestion(1, userName);
 };
 

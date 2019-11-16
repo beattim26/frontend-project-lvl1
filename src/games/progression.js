@@ -6,6 +6,7 @@ import {
   checkUserAnswer,
   askAnyQuestion,
   makeGreeting,
+  askUserName,
 } from '../engine/computing';
 
 // create progression and return string of progression or hidden number in progression string
@@ -42,9 +43,7 @@ const askProgressionQuestion = (answerCount, user) => {
 
 const startProgressionGame = () => {
   makeGreeting('What number is missing in the progression?');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log('');
+  const userName = askUserName();
   askProgressionQuestion(1, userName);
 };
 

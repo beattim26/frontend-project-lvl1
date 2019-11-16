@@ -6,6 +6,7 @@ import {
   checkUserAnswer,
   askAnyQuestion,
   makeGreeting,
+  askUserName,
 } from '../engine/computing';
 
 const isEvenNumber = (num) => num % 2 === 0;
@@ -24,9 +25,7 @@ const askEvenQuestion = (answerCount, user) => {
 // Ask even question of user
 const startEvenGame = () => {
   makeGreeting('Answer "yes" if the number is even, otherwise answer "no"');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log('');
+  const userName = askUserName();
   askEvenQuestion(1, userName);
 };
 

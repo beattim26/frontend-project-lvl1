@@ -6,6 +6,7 @@ import {
   checkUserAnswer,
   askAnyQuestion,
   makeGreeting,
+  askUserName,
 } from '../engine/computing';
 
 // check if the number is prime
@@ -34,9 +35,7 @@ const askPrimeQuestion = (answerCount, user) => {
 
 const startPrimeGame = () => {
   makeGreeting('Answer "yes" if given number is prime. Othervwise anser "no".');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log('');
+  const userName = askUserName();
   askPrimeQuestion(1, userName);
 };
 

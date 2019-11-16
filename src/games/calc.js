@@ -6,6 +6,7 @@ import {
   checkUserAnswer,
   askAnyQuestion,
   makeGreeting,
+  askUserName,
 } from '../engine/computing';
 
 // create and return random expresion in the string for question to user
@@ -47,9 +48,7 @@ const askCalcQestion = (answerCount, user) => {
 
 const startCalcGame = () => {
   makeGreeting('What is the result of the expression?');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log('');
+  const userName = askUserName();
   askCalcQestion(1, userName);
 };
 
