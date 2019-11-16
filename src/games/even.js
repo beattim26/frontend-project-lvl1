@@ -5,6 +5,7 @@ import {
   makeIntegerNumber,
   checkUserAnswer,
   askAnyQuestion,
+  makeGreeting,
 } from '../engine/computing';
 
 const isEvenNumber = (num) => num % 2 === 0;
@@ -22,9 +23,7 @@ const askEvenQuestion = (answerCount, user) => {
 
 // Ask even question of user
 const startEvenGame = () => {
-  console.log('Welcome to the Brain Games!');
-  console.log('Answer "yes" if the number is even, otherwise answer "no"');
-  console.log('');
+  makeGreeting('Answer "yes" if the number is even, otherwise answer "no"');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
   console.log('');

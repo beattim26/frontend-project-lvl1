@@ -5,6 +5,7 @@ import {
   makeIntegerNumber,
   checkUserAnswer,
   askAnyQuestion,
+  makeGreeting,
 } from '../engine/computing';
 
 // create progression and return string of progression or hidden number in progression string
@@ -40,9 +41,7 @@ const askProgressionQuestion = (answerCount, user) => {
 };
 
 const startProgressionGame = () => {
-  console.log('Welcome to the Brain Games!');
-  console.log('What number is missing in the progression?');
-  console.log('');
+  makeGreeting('What number is missing in the progression?');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
   console.log('');

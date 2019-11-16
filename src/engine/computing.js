@@ -20,8 +20,15 @@ const checkUserAnswer = (userAnswer, correctAnswer, func, count, userName) => {
   return func(1, userName);
 };
 
+const makeGreeting = (message) => {
+  console.log('Welcome to the Brain Games!');
+  console.log(message);
+  console.log('');
+};
+
 export {
   makeIntegerNumber,
   checkUserAnswer,
   askAnyQuestion,
+  makeGreeting,
 };

@@ -5,6 +5,7 @@ import {
   makeIntegerNumber,
   checkUserAnswer,
   askAnyQuestion,
+  makeGreeting,
 } from '../engine/computing';
 
 // check if the number is prime
@@ -32,9 +33,7 @@ const askPrimeQuestion = (answerCount, user) => {
 };
 
 const startPrimeGame = () => {
-  console.log('Welcome to the Brain Games!');
-  console.log('Answer "yes" if given number is prime. Othervwise anser "no".');
-  console.log('');
+  makeGreeting('Answer "yes" if given number is prime. Othervwise anser "no".');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
   console.log('');

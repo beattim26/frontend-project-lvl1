@@ -5,6 +5,7 @@ import {
   makeIntegerNumber,
   checkUserAnswer,
   askAnyQuestion,
+  makeGreeting,
 } from '../engine/computing';
 
 // create and return random expresion in the string for question to user
@@ -45,9 +46,7 @@ const askCalcQestion = (answerCount, user) => {
 };
 
 const startCalcGame = () => {
-  console.log('Welcome to the Brain Games!');
-  console.log('What is the result of the expression?');
-  console.log('');
+  makeGreeting('What is the result of the expression?');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
   console.log('');
