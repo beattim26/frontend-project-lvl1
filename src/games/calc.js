@@ -2,9 +2,9 @@
 
 import readlineSync from 'readline-sync';
 import {
-  makeGreeting,
   makeIntegerNumber,
   checkUserAnswer,
+  askAnyQuestion,
 } from '../engine/computing';
 
 // create and return random expresion in the string for question to user
@@ -34,8 +34,9 @@ const askCalcQestion = (answerCount, user) => {
   const firstRandomNumber = makeIntegerNumber(1, 25);
   const secondRandomNumber = makeIntegerNumber(1, 25);
   const thirdRandomNumber = makeIntegerNumber(1, 4);
+  const question = makeRandomExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber);
 
-  console.log(`Question: ${makeRandomExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber)}`);
+  askAnyQuestion(question);
 
   const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = `${calcExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber)}`;
@@ -44,8 +45,13 @@ const askCalcQestion = (answerCount, user) => {
 };
 
 const startCalcGame = () => {
-  const name = makeGreeting('What is the result of the expression?');
-  askCalcQestion(1, name);
+  console.log('Welcome to the Brain Games!');
+  console.log('What is the result of the expression?');
+  console.log('');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log('');
+  askCalcQestion(1, userName);
 };
 
 export default startCalcGame;

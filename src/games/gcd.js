@@ -2,9 +2,9 @@
 
 import readlineSync from 'readline-sync';
 import {
-  makeGreeting,
   makeIntegerNumber,
   checkUserAnswer,
+  askAnyQuestion,
 } from '../engine/computing';
 
 // find the greatest divider for two number
@@ -19,18 +19,24 @@ const askGcdQestion = (answerCount, user) => {
   // create 2 random number for function calcNod
   const firstRandomNumber = makeIntegerNumber(1, 100);
   const secondRandomNumber = makeIntegerNumber(1, 100);
+  const question = `${firstRandomNumber} ${secondRandomNumber}`;
 
-  console.log(`Question: ${firstRandomNumber} ${secondRandomNumber}`);
+  askAnyQuestion(question);
 
   const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = String(calcNod(firstRandomNumber, secondRandomNumber));
+  const correctAnswer = `${calcNod(firstRandomNumber, secondRandomNumber)}`;
 
   checkUserAnswer(userAnswer, correctAnswer, askGcdQestion, answerCount, user);
 };
 
 const startGcdGame = () => {
-  const name = makeGreeting('Find the gratest common divisor of given numbers.');
-  askGcdQestion(1, name);
+  console.log('Welcome to the Brain Games!');
+  console.log('Find the gratest common divisor of given numbers.');
+  console.log('');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log('');
+  askGcdQestion(1, userName);
 };
 
 export default startGcdGame;

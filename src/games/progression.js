@@ -2,9 +2,9 @@
 
 import readlineSync from 'readline-sync';
 import {
-  makeGreeting,
   makeIntegerNumber,
   checkUserAnswer,
+  askAnyQuestion,
 } from '../engine/computing';
 
 // create progression and return string of progression or hidden number in progression string
@@ -28,19 +28,25 @@ const askProgressionQuestion = (answerCount, user) => {
   const firstRandomNumber = makeIntegerNumber(1, 50);
   const secondRandomNumber = makeIntegerNumber(1, 25);
   const hiddenPosition = makeIntegerNumber(2, 9);
+  const question = makeProgression(firstRandomNumber, secondRandomNumber, hiddenPosition, true);
 
-  console.log(`Question: ${makeProgression(firstRandomNumber, secondRandomNumber, hiddenPosition, true)}`);
+  askAnyQuestion(question);
 
   const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = String(makeProgression(firstRandomNumber, secondRandomNumber,
-    hiddenPosition, false));
+  const correctAnswer = `${makeProgression(firstRandomNumber, secondRandomNumber,
+    hiddenPosition, false)}`;
 
   checkUserAnswer(userAnswer, correctAnswer, askProgressionQuestion, answerCount, user);
 };
 
 const startProgressionGame = () => {
-  const name = makeGreeting('What number is missing in the progression?');
-  askProgressionQuestion(1, name);
+  console.log('Welcome to the Brain Games!');
+  console.log('What number is missing in the progression?');
+  console.log('');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log('');
+  askProgressionQuestion(1, userName);
 };
 
 export default startProgressionGame;

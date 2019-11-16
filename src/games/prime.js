@@ -2,9 +2,9 @@
 
 import readlineSync from 'readline-sync';
 import {
-  makeGreeting,
   makeIntegerNumber,
   checkUserAnswer,
+  askAnyQuestion,
 } from '../engine/computing';
 
 // check if the number is prime
@@ -21,19 +21,24 @@ const isPrime = (num) => {
 
 const askPrimeQuestion = (answerCount, user) => {
   // create a random number for function isPrime
-  const randomNumber = makeIntegerNumber(2, 3571);
+  const question = makeIntegerNumber(2, 3571);
 
-  console.log(`Question: ${randomNumber}`);
+  askAnyQuestion(question);
 
   const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = isPrime(randomNumber) ? 'yes' : 'no';
+  const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
   checkUserAnswer(userAnswer, correctAnswer, askPrimeQuestion, answerCount, user);
 };
 
 const startPrimeGame = () => {
-  const name = makeGreeting('Answer "yes" if given number is prime. Othervwise anser "no".');
-  askPrimeQuestion(1, name);
+  console.log('Welcome to the Brain Games!');
+  console.log('Answer "yes" if given number is prime. Othervwise anser "no".');
+  console.log('');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log('');
+  askPrimeQuestion(1, userName);
 };
 
 export default startPrimeGame;
