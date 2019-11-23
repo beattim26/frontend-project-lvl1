@@ -1,32 +1,28 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
+import askQuestion from '../engine';
 import {
   makeIntegerNumber,
-  checkUserAnswer,
-  askAnyQuestion,
   makeGreeting,
   askUserName,
-} from '../engine/computing';
+} from '../library';
 
+// create a random integer number from min to max
 const isEvenNumber = (num) => num % 2 === 0;
 
-const askEvenQuestion = (answerCount, user) => {
+const askEvenQuestion = (userName, acc) => {
   const question = makeIntegerNumber(1, 100);
-
-  askAnyQuestion(question);
-
-  const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = isEvenNumber(question) ? 'yes' : 'no';
 
-  checkUserAnswer(userAnswer, correctAnswer, askEvenQuestion, answerCount, user);
+  askQuestion(question, correctAnswer, askEvenQuestion, userName, acc);
 };
 
 // Ask even question of user
 const startEvenGame = () => {
   makeGreeting('Answer "yes" if the number is even, otherwise answer "no"');
   const userName = askUserName();
-  askEvenQuestion(1, userName);
+
+  askEvenQuestion(userName, 1);
 };
 
 export default startEvenGame;

@@ -1,13 +1,11 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
+import askQuestion from '../engine';
 import {
   makeIntegerNumber,
-  checkUserAnswer,
-  askAnyQuestion,
   makeGreeting,
   askUserName,
-} from '../engine/computing';
+} from '../library';
 
 // create progression and return string of progression or hidden number in progression string
 const makeProgression = (a, b, hiddenPosition, result) => {
@@ -25,26 +23,22 @@ const makeProgression = (a, b, hiddenPosition, result) => {
   return String(progressionArr[hiddenPosition]);
 };
 
-const askProgressionQuestion = (answerCount, user) => {
+const askProgressionQuestion = (userName, acc) => {
   // create 3 random number for function makeProgression
   const firstRandomNumber = makeIntegerNumber(1, 50);
   const secondRandomNumber = makeIntegerNumber(1, 25);
   const hiddenPosition = makeIntegerNumber(2, 9);
   const question = makeProgression(firstRandomNumber, secondRandomNumber, hiddenPosition, true);
-
-  askAnyQuestion(question);
-
-  const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = `${makeProgression(firstRandomNumber, secondRandomNumber,
     hiddenPosition, false)}`;
 
-  checkUserAnswer(userAnswer, correctAnswer, askProgressionQuestion, answerCount, user);
+  askQuestion(question, correctAnswer, askProgressionQuestion, userName, acc);
 };
 
 const startProgressionGame = () => {
   makeGreeting('What number is missing in the progression?');
   const userName = askUserName();
-  askProgressionQuestion(1, userName);
+  askProgressionQuestion(userName, 1);
 };
 
 export default startProgressionGame;

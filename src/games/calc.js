@@ -1,55 +1,51 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
+import askQuestion from '../engine';
 import {
   makeIntegerNumber,
-  checkUserAnswer,
-  askAnyQuestion,
   makeGreeting,
   askUserName,
-} from '../engine/computing';
+} from '../library';
 
 // create and return random expresion in the string for question to user
 const makeRandomExpression = (a, b, num) => {
-  if (num === 1) {
-    return `${a} + ${b}`;
+  switch (num) {
+    case 1:
+      return `${a} + ${b}`;
+    case 2:
+      return `${a} - ${b}`;
+    default:
+      return `${a} * ${b}`;
   }
-  if (num === 2) {
-    return `${a} - ${b}`;
-  }
-  return `${a} * ${b}`;
 };
 
 // calculate and return random expresion in the number for answer to user
 const calcExpression = (a, b, num) => {
-  if (num === 1) {
-    return a + b;
+  switch (num) {
+    case 1:
+      return a + b;
+    case 2:
+      return a - b;
+    default:
+      return a * b;
   }
-  if (num === 2) {
-    return a - b;
-  }
-  return a * b;
 };
 
-const askCalcQestion = (answerCount, user) => {
+const askCalcQestion = (userName, acc) => {
   // create 3 random number for function makeRandomExpression and calcExpression
   const firstRandomNumber = makeIntegerNumber(1, 25);
   const secondRandomNumber = makeIntegerNumber(1, 25);
   const thirdRandomNumber = makeIntegerNumber(1, 4);
   const question = makeRandomExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber);
-
-  askAnyQuestion(question);
-
-  const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = `${calcExpression(firstRandomNumber, secondRandomNumber, thirdRandomNumber)}`;
 
-  checkUserAnswer(userAnswer, correctAnswer, askCalcQestion, answerCount, user);
+  askQuestion(question, correctAnswer, askCalcQestion, userName, acc);
 };
 
 const startCalcGame = () => {
   makeGreeting('What is the result of the expression?');
   const userName = askUserName();
-  askCalcQestion(1, userName);
+  askCalcQestion(userName, 1);
 };
 
 export default startCalcGame;
