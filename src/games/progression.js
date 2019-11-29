@@ -1,44 +1,40 @@
 #!/usr/bin/env node
 
 import askQuestion from '../engine';
-import {
-  makeIntegerNumber,
-  makeGreeting,
-  askUserName,
-} from '../library';
+import makeIntegerNumber from '../library';
+
+const progressionLength = 10;
 
 // create progression and return string of progression or hidden number in progression string
-const makeProgression = (a, b, hiddenPosition, result) => {
-  const progressionLength = 10;
-  const progressionArr = [a];
+const makeProgression = (firstRandom, secondRandom, hiddenPosition, result) => {
+  const progressionList = [firstRandom];
 
   for (let i = 1; i < progressionLength; i += 1) {
-    progressionArr.push(progressionArr[i - 1] + b);
+    progressionList.push(progressionList[i - 1] + secondRandom);
   }
 
   if (result) {
-    progressionArr[hiddenPosition] = '..';
-    return String(progressionArr.join(' '));
+    progressionList[hiddenPosition] = '..';
+    return String(progressionList.join(' '));
   }
-  return String(progressionArr[hiddenPosition]);
+  return String(progressionList[hiddenPosition]);
 };
 
-const askProgressionQuestion = (userName, acc) => {
+const askProgressionQuestion = (acc, userName) => {
   // create 3 random number for function makeProgression
-  const firstRandomNumber = makeIntegerNumber(1, 50);
-  const secondRandomNumber = makeIntegerNumber(1, 25);
+  const firstRandom = makeIntegerNumber(1, 50);
+  const secondRandom = makeIntegerNumber(1, 25);
   const hiddenPosition = makeIntegerNumber(2, 9);
-  const question = makeProgression(firstRandomNumber, secondRandomNumber, hiddenPosition, true);
-  const correctAnswer = `${makeProgression(firstRandomNumber, secondRandomNumber,
+  const question = makeProgression(firstRandom, secondRandom, hiddenPosition, true);
+  const correctAnswer = `${makeProgression(firstRandom, secondRandom,
     hiddenPosition, false)}`;
+  const message = 'What number is missing in the progression?';
 
-  askQuestion(question, correctAnswer, askProgressionQuestion, userName, acc);
+  askQuestion(question, correctAnswer, askProgressionQuestion, userName, message, acc);
 };
 
 const startProgressionGame = () => {
-  makeGreeting('What number is missing in the progression?');
-  const userName = askUserName();
-  askProgressionQuestion(userName, 1);
+  askProgressionQuestion(1);
 };
 
 export default startProgressionGame;

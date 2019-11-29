@@ -1,11 +1,7 @@
 #!/usr/bin/env node
 
 import askQuestion from '../engine';
-import {
-  makeIntegerNumber,
-  makeGreeting,
-  askUserName,
-} from '../library';
+import makeIntegerNumber from '../library';
 
 // check if the number is prime
 const isPrime = (num) => {
@@ -19,18 +15,17 @@ const isPrime = (num) => {
   return true;
 };
 
-const askPrimeQuestion = (userName, acc) => {
+const askPrimeQuestion = (acc, userName) => {
   // create a random number for function isPrime
   const question = makeIntegerNumber(2, 3571);
   const correctAnswer = isPrime(question) ? 'yes' : 'no';
+  const message = 'Answer "yes" if given number is prime. Othervwise anser "no".';
 
-  askQuestion(question, correctAnswer, askPrimeQuestion, userName, acc);
+  askQuestion(question, correctAnswer, askPrimeQuestion, userName, message, acc);
 };
 
 const startPrimeGame = () => {
-  makeGreeting('Answer "yes" if given number is prime. Othervwise anser "no".');
-  const userName = askUserName();
-  askPrimeQuestion(userName, 1);
+  askPrimeQuestion(1);
 };
 
 export default startPrimeGame;
