@@ -1,8 +1,7 @@
-#!/usr/bin/env node
-
-import askQuestion from '../engine';
+import startGame from '../engine';
 import makeIntegerNumber from '../library';
 
+const message = 'Find the gratest common divisor of given numbers.';
 // find the greatest divider for two number
 const calcGcd = (firstRandom, secondRandom) => {
   if (secondRandom === 0) {
@@ -11,19 +10,22 @@ const calcGcd = (firstRandom, secondRandom) => {
   return calcGcd(secondRandom, firstRandom % secondRandom);
 };
 
-const askGcdQestion = (acc, userName) => {
-  // create 2 random number for function calcNod
-  const firstRandom = makeIntegerNumber(1, 100);
-  const secondRandom = makeIntegerNumber(1, 100);
-  const question = `${firstRandom} ${secondRandom}`;
-  const correctAnswer = `${calcGcd(firstRandom, secondRandom)}`;
-  const message = 'Find the gratest common divisor of given numbers.';
+const askGcdQestion = () => {
+  const createGcdQuestion = () => {
+    // create 2 random number for function calcNod
+    const firstRandom = makeIntegerNumber(1, 100);
+    const secondRandom = makeIntegerNumber(1, 100);
+    const question = `${firstRandom} ${secondRandom}`;
+    const correctAnswer = `${calcGcd(firstRandom, secondRandom)}`;
 
-  askQuestion(question, correctAnswer, askGcdQestion, userName, message, acc);
+    return [question, correctAnswer];
+  };
+
+  startGame(createGcdQuestion, message);
 };
 
 const startGcdGame = () => {
-  askGcdQestion(1);
+  askGcdQestion();
 };
 
 export default startGcdGame;

@@ -1,38 +1,35 @@
-#!/usr/bin/env node
-
 import readlineSync from 'readline-sync';
 
-const checkUserAnswer = (userAnswer, correctAnswer, func, userName, count) => {
-  // user answer === correct answer, call function again
-  if (userAnswer.toLowerCase() === correctAnswer) {
-    console.log('Correct!');
-    if (count === 3) {
-      return console.log(`Congratulations, ${userName}!`);
-    }
-    return func(count + 1, userName);
-  }
+const quantityQuestions = 3;
 
-  // else, we inform the user that incorrect answer and call function with 0 accum
-  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
-  return func(1, userName);
-};
-
-const askQuestion = (question, correctAnswer, func, name, message, acc) => {
-  let userName = name;
-
-  if (!userName) {
+const startGame = (makeQuestion, message, acc = 0, userName) => {
+  if (acc < 1) {
     console.log('Welcome to the Brain Games!');
     console.log(message);
     console.log('');
-    userName = readlineSync.question('May I have your name?');
-    console.log(`Hello, ${userName}!`);
+    const name = readlineSync.question('May I have your name?');
+    console.log(`Hello, ${name}!`);
     console.log('');
+
+    return startGame(makeQuestion, message, 1, name);
   }
 
-  console.log(`Question: ${question}`);
+  const question = makeQuestion();
+  console.log(`Question: ${question[0]}`);
   const userAnswer = readlineSync.question('Your answer: ');
+  // user answer === correct answer, call function again
+  if (userAnswer.toLowerCase() === question[1]) {
+    console.log('Correct!');
+    if (acc === quantityQuestions) {
+      console.log(`Congratulations, ${userName}!`);
+      return null;
+    }
+    return startGame(makeQuestion, message, acc + 1, userName);
+  }
 
-  checkUserAnswer(userAnswer, correctAnswer, func, userName, acc);
+  // else, we inform the user that incorrect answer and call function with 0 accum
+  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${question[1]}.`);
+  return startGame(makeQuestion, message, 1, userName);
 };
 
-export default askQuestion;
+export default startGame;

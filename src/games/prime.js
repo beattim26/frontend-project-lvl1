@@ -1,8 +1,7 @@
-#!/usr/bin/env node
-
-import askQuestion from '../engine';
+import startGame from '../engine';
 import makeIntegerNumber from '../library';
 
+const message = 'Answer "yes" if given number is prime. Othervwise anser "no".';
 // check if the number is prime
 const isPrime = (num) => {
   const sqrtNum = Math.sqrt(num);
@@ -15,17 +14,20 @@ const isPrime = (num) => {
   return true;
 };
 
-const askPrimeQuestion = (acc, userName) => {
-  // create a random number for function isPrime
-  const question = makeIntegerNumber(2, 3571);
-  const correctAnswer = isPrime(question) ? 'yes' : 'no';
-  const message = 'Answer "yes" if given number is prime. Othervwise anser "no".';
+const askPrimeQuestion = () => {
+  const createPrimeQuestion = () => {
+    // create a random number for function isPrime
+    const question = makeIntegerNumber(2, 3571);
+    const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
-  askQuestion(question, correctAnswer, askPrimeQuestion, userName, message, acc);
+    return [question, correctAnswer];
+  };
+
+  startGame(createPrimeQuestion, message);
 };
 
 const startPrimeGame = () => {
-  askPrimeQuestion(1);
+  askPrimeQuestion();
 };
 
 export default startPrimeGame;
