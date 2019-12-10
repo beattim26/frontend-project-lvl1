@@ -10,22 +10,18 @@ const calcGcd = (firstRandom, secondRandom) => {
   return calcGcd(secondRandom, firstRandom % secondRandom);
 };
 
-const askGcdQestion = () => {
-  const createGcdQuestion = () => {
-    // create 2 random number for function calcNod
-    const firstRandom = makeIntegerNumber(1, 100);
-    const secondRandom = makeIntegerNumber(1, 100);
-    const question = `${firstRandom} ${secondRandom}`;
-    const correctAnswer = `${calcGcd(firstRandom, secondRandom)}`;
+const createGcdQuestion = () => {
+  // create 2 random number for function calcNod
+  const firstRandom = makeIntegerNumber(1, 100);
+  const secondRandom = makeIntegerNumber(1, 100);
+  const question = `${firstRandom} ${secondRandom}`;
+  const correctAnswer = String(calcGcd(firstRandom, secondRandom));
 
-    return [question, correctAnswer];
-  };
-
-  startGame(createGcdQuestion, message);
+  return [question, correctAnswer];
 };
 
 const startGcdGame = () => {
-  askGcdQestion();
+  startGame(createGcdQuestion, message);
 };
 
 export default startGcdGame;

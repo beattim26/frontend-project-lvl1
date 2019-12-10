@@ -14,20 +14,16 @@ const isPrime = (num) => {
   return true;
 };
 
-const askPrimeQuestion = () => {
-  const createPrimeQuestion = () => {
-    // create a random number for function isPrime
-    const question = makeIntegerNumber(2, 3571);
-    const correctAnswer = isPrime(question) ? 'yes' : 'no';
+const createPrimeQuestion = () => {
+  // create a random number for function isPrime
+  const question = makeIntegerNumber(2, 3571);
+  const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
-    return [question, correctAnswer];
-  };
-
-  startGame(createPrimeQuestion, message);
+  return [question, correctAnswer];
 };
 
 const startPrimeGame = () => {
-  askPrimeQuestion();
+  startGame(createPrimeQuestion, message);
 };
 
 export default startPrimeGame;
