@@ -3,14 +3,14 @@ import makeIntegerNumber from '../library';
 
 const message = 'Find the gratest common divisor of given numbers.';
 // find the greatest divider for two number
-const calcGcd = (firstRandom, secondRandom) => {
-  if (secondRandom === 0) {
-    return firstRandom;
+const calcGcd = (a, b) => {
+  if (b === 0) {
+    return a;
   }
-  return calcGcd(secondRandom, firstRandom % secondRandom);
+  return calcGcd(b, a % b);
 };
 
-const createGcdQuestion = () => {
+const makeRoundGcdData = () => {
   // create 2 random number for function calcNod
   const firstRandom = makeIntegerNumber(1, 100);
   const secondRandom = makeIntegerNumber(1, 100);
@@ -21,7 +21,7 @@ const createGcdQuestion = () => {
 };
 
 const startGcdGame = () => {
-  startGame(createGcdQuestion, message);
+  startGame(makeRoundGcdData, message);
 };
 
 export default startGcdGame;

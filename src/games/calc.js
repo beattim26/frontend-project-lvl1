@@ -13,9 +13,11 @@ const createCalcQuestion = () => {
   // create 3 random number for function makeRandomExpression and calcExpression
   const firstRandom = makeIntegerNumber(2, 25);
   const secondRandom = makeIntegerNumber(2, 25);
-  const thirdRandom = makeIntegerNumber(0, 2);
-  const question = `${firstRandom} ${expressionsList[thirdRandom][0]} ${secondRandom}`;
-  const correctAnswer = String(expressionsList[thirdRandom][1](firstRandom, secondRandom));
+  const indexExpression = makeIntegerNumber(0, expressionsList.length - 1);
+  const expressionString = expressionsList[indexExpression][0];
+  const expressionResult = expressionsList[indexExpression][1](firstRandom, secondRandom);
+  const question = `${firstRandom} ${expressionString} ${secondRandom}`;
+  const correctAnswer = String(expressionResult);
 
   return [question, correctAnswer];
 };

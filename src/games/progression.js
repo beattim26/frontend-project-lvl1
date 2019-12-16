@@ -5,34 +5,31 @@ const progressionLength = 10;
 const message = 'What number is missing in the progression?';
 
 // create progression and return string of progression or hidden number in progression string
-const makeProgression = (firstRandom, secondRandom, hiddenPosition, result) => {
+const makeProgressionQuestion = (a, b, hiddenElementPosition, length) => {
   const progressionList = [];
 
-  for (let i = 0; i < progressionLength; i += 1) {
-    progressionList.push(firstRandom + (secondRandom * i));
+  for (let i = 0; i < length; i += 1) {
+    progressionList.push(a + b * i);
   }
 
-  if (result) {
-    progressionList[hiddenPosition] = '..';
-    return String(progressionList.join(' '));
-  }
-  return String(progressionList[hiddenPosition]);
+  progressionList[hiddenElementPosition] = '..';
+  return progressionList.join(' ');
 };
 
-const createProgressionQuestion = () => {
+const makeRoundProgressionData = () => {
   // create 3 random number for function makeProgression
   const firstRandom = makeIntegerNumber(1, 50);
   const secondRandom = makeIntegerNumber(2, 25);
-  const hiddenPosition = makeIntegerNumber(1, 9);
-  const question = makeProgression(firstRandom, secondRandom, hiddenPosition, true);
-  const correctAnswer = makeProgression(firstRandom, secondRandom,
-    hiddenPosition, false);
+  const hiddenElementPosition = makeIntegerNumber(1, progressionLength - 1);
+  const question = makeProgressionQuestion(firstRandom, secondRandom, hiddenElementPosition,
+    progressionLength);
+  const correctAnswer = String(firstRandom + secondRandom * hiddenElementPosition);
 
   return [question, correctAnswer];
 };
 
 const startProgressionGame = () => {
-  startGame(createProgressionQuestion, message);
+  startGame(makeRoundProgressionData, message);
 };
 
 export default startProgressionGame;
