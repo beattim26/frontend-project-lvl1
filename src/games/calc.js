@@ -15,9 +15,9 @@ const makeRoundCalcData = () => {
   const secondRandom = makeIntegerNumber(2, 25);
   const indexExpression = makeIntegerNumber(0, expressions.length - 1);
   const expression = expressions[indexExpression][0];
-  const expressionResult = expressions[indexExpression][1](firstRandom, secondRandom);
+  const calcExpression = expressions[indexExpression][1];
   const question = `${firstRandom} ${expression} ${secondRandom}`;
-  const correctAnswer = String(expressionResult);
+  const correctAnswer = String(calcExpression(firstRandom, secondRandom));
 
   return [question, correctAnswer];
 };

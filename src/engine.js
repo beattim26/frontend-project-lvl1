@@ -11,22 +11,23 @@ const startGame = (makeQuestion, message) => {
   console.log('');
 
   const iter = (counter = 1) => {
+    if (counter > questionCount) {
+      console.log(`Congratulations, ${userName}!`);
+      return;
+    }
+
     const questionData = makeQuestion();
     const question = questionData[0];
-    const answer = questionData[1];
+    const correctAnswer = questionData[1];
     console.log(`Question: ${question}`);
     const userAnswer = readlineSync.question('Your answer: ');
-    // user answer === correct answer, call function again
-    if (userAnswer.toLowerCase() === answer) {
+    // user answer === correct answer, call function againh
+    if (userAnswer.toLowerCase() === correctAnswer) {
       console.log('Correct!');
-      if (counter === questionCount) {
-        console.log(`Congratulations, ${userName}!`);
-        return;
-      }
       iter(counter + 1);
     } else {
       // else, we inform the user that incorrect answer and call function with 0 accum
-      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${answer}.`);
+      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
       iter();
     }
   };
