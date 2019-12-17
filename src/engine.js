@@ -21,15 +21,16 @@ const startGame = (makeQuestion, message) => {
       console.log('Correct!');
       if (counter === questionCount) {
         console.log(`Congratulations, ${userName}!`);
-        return null;
+        return;
       }
       iter(counter + 1);
+    } else {
+      // else, we inform the user that incorrect answer and call function with 0 accum
+      console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${answer}.`);
+      iter();
     }
-
-    // else, we inform the user that incorrect answer and call function with 0 accum
-    console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${answer}.`);
-    return iter();
   };
+
   iter();
 };
 

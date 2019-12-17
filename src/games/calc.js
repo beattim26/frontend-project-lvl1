@@ -3,27 +3,27 @@ import makeIntegerNumber from '../library';
 
 const message = 'What is the result of the expression?';
 // create and calculate random expresion for question to user
-const expressionsList = [
+const expressions = [
   ['+', (a, b) => a + b],
   ['-', (a, b) => a - b],
   ['*', (a, b) => a * b],
 ];
 
-const createCalcQuestion = () => {
+const makeRoundCalcData = () => {
   // create 3 random number for function makeRandomExpression and calcExpression
   const firstRandom = makeIntegerNumber(2, 25);
   const secondRandom = makeIntegerNumber(2, 25);
-  const indexExpression = makeIntegerNumber(0, expressionsList.length - 1);
-  const expressionString = expressionsList[indexExpression][0];
-  const expressionResult = expressionsList[indexExpression][1](firstRandom, secondRandom);
-  const question = `${firstRandom} ${expressionString} ${secondRandom}`;
+  const indexExpression = makeIntegerNumber(0, expressions.length - 1);
+  const expression = expressions[indexExpression][0];
+  const expressionResult = expressions[indexExpression][1](firstRandom, secondRandom);
+  const question = `${firstRandom} ${expression} ${secondRandom}`;
   const correctAnswer = String(expressionResult);
 
   return [question, correctAnswer];
 };
 
 const startCalcGame = () => {
-  startGame(createCalcQuestion, message);
+  startGame(makeRoundCalcData, message);
 };
 
 export default startCalcGame;

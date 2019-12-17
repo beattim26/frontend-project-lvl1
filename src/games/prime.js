@@ -15,7 +15,7 @@ const isPrime = (a) => {
   return true;
 };
 
-const createPrimeQuestion = () => {
+const makeRoundPrimeData = () => {
   // create a random number for function isPrime
   const question = makeIntegerNumber(2, 3571);
   const correctAnswer = isPrime(question) ? 'yes' : 'no';
@@ -24,7 +24,7 @@ const createPrimeQuestion = () => {
 };
 
 const startPrimeGame = () => {
-  startGame(createPrimeQuestion, message);
+  startGame(makeRoundPrimeData, message);
 };
 
 export default startPrimeGame;

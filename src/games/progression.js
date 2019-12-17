@@ -6,14 +6,15 @@ const message = 'What number is missing in the progression?';
 
 // create progression and return string of progression or hidden number in progression string
 const makeProgressionQuestion = (a, b, hiddenElementPosition, length) => {
-  const progressionList = [];
+  const progressions = [];
 
   for (let i = 0; i < length; i += 1) {
-    progressionList.push(a + b * i);
+    progressions.push(a + b * i);
   }
 
-  progressionList[hiddenElementPosition] = '..';
-  return progressionList.join(' ');
+  progressions[hiddenElementPosition] = '..';
+
+  return progressions.join(' ');
 };
 
 const makeRoundProgressionData = () => {
