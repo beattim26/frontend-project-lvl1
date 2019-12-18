@@ -3,8 +3,11 @@ import makeIntegerNumber from '../library';
 
 const message = 'Answer "yes" if given number is prime. Othervwise anser "no".';
 // check if the number is prime
-const isPrime = (a) => {
-  const num = (a < 2 || !a) ? makeIntegerNumber(2, 3571) : a;
+const isPrime = (num) => {
+  if (num < 2 || !num) {
+    return false;
+  }
+
   const sqrtNum = Math.sqrt(num);
 
   for (let i = 2; i <= sqrtNum; i += 1) {
