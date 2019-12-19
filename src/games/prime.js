@@ -2,7 +2,6 @@ import startGame from '../engine';
 import makeIntegerNumber from '../library';
 
 const message = 'Answer "yes" if given number is prime. Othervwise anser "no".';
-// check if the number is prime
 const isPrime = (num) => {
   if (num < 2 || !num) {
     return false;
@@ -19,7 +18,6 @@ const isPrime = (num) => {
 };
 
 const makeRoundPrimeData = () => {
-  // create a random number for function isPrime
   const question = makeIntegerNumber(2, 3571);
   const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
