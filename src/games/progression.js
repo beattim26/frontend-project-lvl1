@@ -1,4 +1,4 @@
-import startGame from '../engine';
+import playGame from '../engine';
 import makeIntegerNumber from '../library';
 
 const progressionLength = 10;
@@ -28,7 +28,7 @@ const makeRoundProgressionData = () => {
 };
 
 const startProgressionGame = () => {
-  startGame(makeRoundProgressionData, message);
+  playGame(makeRoundProgressionData, message);
 };
 
 export default startProgressionGame;

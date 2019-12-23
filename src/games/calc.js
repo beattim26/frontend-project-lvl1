@@ -1,4 +1,4 @@
-import startGame from '../engine';
+import playGame from '../engine';
 import makeIntegerNumber from '../library';
 
 const message = 'What is the result of the expression?';
@@ -20,7 +20,7 @@ const makeRoundCalcData = () => {
 };
 
 const startCalcGame = () => {
-  startGame(makeRoundCalcData, message);
+  playGame(makeRoundCalcData, message);
 };
 
 export default startCalcGame;

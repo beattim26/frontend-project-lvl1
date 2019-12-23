@@ -1,4 +1,4 @@
-import startGame from '../engine';
+import playGame from '../engine';
 import makeIntegerNumber from '../library';
 
 const message = 'Answer "yes" if given number is prime. Othervwise anser "no".';
@@ -25,7 +25,7 @@ const makeRoundPrimeData = () => {
 };
 
 const startPrimeGame = () => {
-  startGame(makeRoundPrimeData, message);
+  playGame(makeRoundPrimeData, message);
 };
 
 export default startPrimeGame;

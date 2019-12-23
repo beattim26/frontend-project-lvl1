@@ -1,4 +1,4 @@
-import startGame from '../engine';
+import playGame from '../engine';
 import makeIntegerNumber from '../library';
 
 const message = 'Answer "yes" if the number is even, otherwise answer "no"';
@@ -12,7 +12,7 @@ const makeRoundEvenData = () => {
 };
 
 const startEvenGame = () => {
-  startGame(makeRoundEvenData, message);
+  playGame(makeRoundEvenData, message);
 };
 
 export default startEvenGame;

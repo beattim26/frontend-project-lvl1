@@ -1,4 +1,4 @@
-import startGame from '../engine';
+import playGame from '../engine';
 import makeIntegerNumber from '../library';
 
 const message = 'Find the gratest common divisor of given numbers.';
@@ -19,7 +19,7 @@ const makeRoundGcdData = () => {
 };
 
 const startGcdGame = () => {
-  startGame(makeRoundGcdData, message);
+  playGame(makeRoundGcdData, message);
 };
 
 export default startGcdGame;
